@@ -321,6 +321,7 @@ nav .logo-container .logo {
   overflow-y: auto;
 }
 
+/* --- Chat Input --- */
 .chat-input {
   padding: 20px;
   display: flex;
