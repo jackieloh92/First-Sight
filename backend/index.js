@@ -235,4 +235,23 @@ app.get('/messages', async (req, res) => {
     }
 })
 
+// Add a Message to our Database
+app.post('/message', async (req, res) => {
+    const client = new MongoClient(uri)
+    const message = req.body.message
+
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const messages = database.collection('messages')
+
+        const insertedMessage = await messages.insertOne(message)
+        res.send(insertedMessage)
+    } finally {
+        await client.close()
+    }
+})
+
+
+
 app.listen(PORT, () => console.log('server running on PORT ' + PORT))
