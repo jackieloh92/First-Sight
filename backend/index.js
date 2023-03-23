@@ -160,4 +160,23 @@ app.get('/users', async (req, res) => {
         await client.close()
     }
 })
+
+// Get all the Gendered Users in the Database
+app.get('/gendered-users', async (req, res) => {
+    const client = new MongoClient(uri)
+    const gender = req.query.gender
+
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
+        const query = {gender_identity: {$eq: gender}}
+        const foundUsers = await users.find(query).toArray()
+        res.json(foundUsers)
+
+    } finally {
+        await client.close()
+    }
+})
+
 app.listen(PORT, () => console.log('server running on PORT ' + PORT))
