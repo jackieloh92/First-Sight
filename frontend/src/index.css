@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700;800&display=swap');
 
 html,
 body {
@@ -12,50 +12,48 @@ h2 {
 }
 
 * {
-  font-family: "Readex Pro", sans-serif;
+  font-family: 'Readex Pro', sans-serif;
 }
 
 .primary-title {
   font-size: 90px;
-  color: rgba(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 
 .primary-button {
-  color: #fff;
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
   font-size: 15px;
   background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
-  padding: 12px, 30px;
+  padding: 12px 30px;
   border-radius: 30px;
   border: none;
 }
 
 .primary-button:hover {
-  background: linear-gradient(268deg, rgb(254, 48, 114), rgb(255, 89, 64));
+  background: linear-gradient(260deg, rgb(254, 48, 114), rgb(255, 89, 64));
 }
 
 .secondary-button {
   color: rgb(121, 119, 119);
-  background-color: (255, 255, 255);
-  font-weight: 500px;
+  background-color: rgb(255, 255, 255);
+  font-weight: 500;
   font-size: 15px;
   text-transform: uppercase;
   padding: 12px 30px;
+  border-radius: 30px;
   border: solid 2px rgb(121, 119, 119);
   margin: 6px;
 }
 
 .secondary-button:hover {
   color: rgb(48, 48, 48);
-  border: solid 2px rgb(121, 119, 119);
-  margin: 6px;
+  border: solid 2px rgb(48, 48, 48);
 }
 
-body {
-  text-align: center;
-}
 
-/*---Nav Bar---*/
+/*-------- Navbar --------*/
+
 nav {
   width: 100%;
   display: flex;
@@ -73,44 +71,39 @@ nav .nav-button {
 }
 
 nav .nav-button:disabled {
-  background-color: rgb(189, 180, 180);
-  color: rgb(160, 38, 75);
+  background-color: rgb(181, 180, 180);
+  color: rgb(189, 42, 90);
 }
+
 nav .logo-container {
   width: 170px;
   margin: 15px;
-  /* background-color: rgb(160, 38, 75); */
 }
 
 nav .logo-container .logo {
   width: 100%;
 }
 
-/*---Home Page---*/
-
+/*-------- Home page --------*/
 .overlay {
-  color: white;
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       rgba(0, 0, 0, 0.65) 0%,
-      rgba(0, 0, 0, 0) 100%
-    ),
-    url("images/6e9794bcedeecf5a8f8f41338a2a7345.webp");
+      rgba(0, 0, 0, 0) 100%), url('images/6e9794bcedeecf5a8f8f41338a2a7345.webp')
 }
 
 .home {
   margin-top: 30vh;
 }
 
-/*---Auht Modal---*/
+/*-------- Auth Modal --------*/
 .auth-modal {
   position: absolute;
   left: 0;
   right: 0;
-  top: 175px;
+  top: 50px;
   margin-left: auto;
   margin-right: auto;
   max-width: 360px;
@@ -124,27 +117,21 @@ nav .logo-container .logo {
   float: right;
 }
 
-.auth-modal {
-  display: flex;
-  flex-direction: column;
-}
-
 .auth-modal form {
   display: flex;
   flex-direction: column;
 }
 
-.auth-modal input[type="password"],
-.auth-modal input [type="email"] {
+.auth-modal input[type=password],
+.auth-modal input[type=email] {
   padding: 8px;
   margin: 8px;
   font-size: 17px;
 }
 
-/*---Onboarding Page---*/
-
+/*-------- OnBoarding Page --------*/
 .onboarding {
-  border-top: solid 1px rgb(154, 154, 154);
+  border-top: solid 1px rgb(213, 213, 213);
 }
 
 .onboarding form {
@@ -168,12 +155,6 @@ nav .logo-container .logo {
   border-radius: 10px;
 }
 
-.onboarding form input::-webkit-outer-spin-button,
-.onboarding form input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 .onboarding form label {
   margin: 10px 0;
 }
@@ -181,6 +162,12 @@ nav .logo-container .logo {
 .onboarding form .multiple-input-container {
   display: flex;
   flex-direction: row;
+}
+
+.onboarding form input::-webkit-outer-spin-button,
+.onboarding form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .onboarding form .multiple-input-container input {
@@ -195,31 +182,31 @@ nav .logo-container .logo {
   margin-right: 10px;
 }
 
-.onboarding form input[type="radio"] {
+.onboarding form input[type=radio] {
   display: none;
 }
 
-.onboarding form input[type="number"] {
+.onboarding form input[type=number] {
   width: 10%;
 }
 
-.onboarding form input[type="radio"]:checked + label {
+.onboarding form input[type=radio]:checked+label {
   border: solid 2px rgb(221, 39, 22);
 }
 
-.onboarding form input[type="submit"]:hover {
-  background-color: rgd (226, 115, 155);
+.onboarding form input[type=submit]:hover {
+  background-color: rgb(235, 235, 235);
 }
 
-.onboarding form input[type="submit"]:active {
-  background-color: rgb(226, 115, 155);
+.onboarding form input[type=submit]:active {
+  background-color: rgb(226, 115, 115);
 }
 
 .onboarding form .photo-container img {
-  width: 100%;
+  width: 100%
 }
 
-/*---Dashboard---*/
+/*-------- Dashboard  --------*/
 .dashboard {
   display: flex;
   justify-content: space-between;
@@ -227,6 +214,7 @@ nav .logo-container .logo {
 
 .dashboard .swipe-container {
   width: 70%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -237,13 +225,12 @@ nav .logo-container .logo {
   position: absolute;
 }
 
-.dashboard card-container {
+.dashboard .card-container {
   width: 400px;
   height: 650px;
 }
 
 .card {
-  background-color: #fff;
   width: 400px;
   height: 650px;
   border-radius: 30px;
@@ -261,8 +248,7 @@ nav .logo-container .logo {
   padding: 10px;
 }
 
-/*---chat container---*/
-
+/*-------- Chat Container --------*/
 .chat-container {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
@@ -313,15 +299,15 @@ nav .logo-container .logo {
   width: 100%;
 }
 
-/*--- Chat Display ---*/
-
-.chat-display {
+/*-------- Chat Display --------*/
+.chat-display,
+.matches-display {
   padding: 20px;
   height: 60vh;
   overflow-y: auto;
 }
 
-/* --- Chat Input --- */
+/*-------- Chat Input --------*/
 .chat-input {
   padding: 20px;
   display: flex;

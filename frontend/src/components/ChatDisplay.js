@@ -1,13 +1,13 @@
-import Chat from "./Chat";
-import ChatInput from "./ChatInput";
+import Chat from './Chat'
+import ChatInput from './ChatInput'
 
 const ChatDisplay = () => {
-  return (
-    <>
-      <Chat />
-      <ChatInput />
-    </>
-  );
-};
+    return (
+        <>
+            <Chat />
+            <ChatInput />
+        </>
+    )
+}
 
-export default ChatDisplay;
+export default ChatDisplay

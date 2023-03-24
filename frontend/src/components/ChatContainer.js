@@ -1,21 +1,25 @@
-import ChatHeader from "./ChatHeader";
-import MatchesDisplay from "./MatchesDisplay";
-import ChatDisplay from "./ChatDisplay";
+import ChatHeader from './ChatHeader'
+import MatchesDisplay from './MatchesDisplay'
+import ChatDisplay from './ChatDisplay'
+import { useState } from 'react'
 
 const ChatContainer = () => {
-  return (
-    <div className="chat-container">
-      <ChatHeader />
+    const [clickedUser, setClickedUser] = useState(null)
 
-      <div>
-        <button className="option">Matches</button>
-        <button className="option">Chat</button>
-      </div>
+    return (
+        <div className="chat-container">
+            <ChatHeader />
 
-      <MatchesDisplay />
-      <ChatDisplay />
-    </div>
-  );
-};
+            <div>
+                <button className="option" onClick={() => setClickedUser(null)}>Matches</button>
+                <button className="option" disabled={!clickedUser}>Chat</button>
+            </div>
 
-export default ChatContainer;
+            <MatchesDisplay />
+
+            <ChatDisplay />
+        </div>
+    )
+}
+
+export default ChatContainer

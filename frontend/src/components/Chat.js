@@ -1,8 +1,9 @@
 const Chat = () => {
-  return;
-  <>
-    <div className="chat-display"></div>;
-  </>;
-};
+    return (
+        <div className="chat-display">
+            Chat
+        </div>
+    )
+}
 
-export default Chat;
+export default Chat
