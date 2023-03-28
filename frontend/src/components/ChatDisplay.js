@@ -9,20 +9,6 @@ const ChatDisplay = ({ user, clickedUser }) => {
   const [usersMessages, setUsersMessages] = useState(null)
   const [clickedUsersMessages, setClickedUsersMessages] = useState(null)
 
-  const submitReport = async (event) => {
-    event.preventDefault()
-    // console.log('clickedUserId :', clickedUserId)
-    try {
-      const response = await axios.post('http://localhost:8000/report', {
-        reportedUserId: clickedUserId,
-        problem: 'hahahah',
-      })
-      // setUsersMessages(response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const getUsersMessages = async () => {
     try {
       const response = await axios.get('http://localhost:8000/messages', {
@@ -73,7 +59,6 @@ const ChatDisplay = ({ user, clickedUser }) => {
   const descendingOrderMessages = messages?.sort((a, b) =>
     a.timestamp.localeCompare(b.timestamp)
   )
-
   return (
     <>
       <Chat descendingOrderMessages={descendingOrderMessages} />
@@ -84,9 +69,7 @@ const ChatDisplay = ({ user, clickedUser }) => {
         getUserMessages={getUsersMessages}
         getClickedUsersMessages={getClickedUsersMessages}
       />
-      <button className='report' type='submit' onClick={submitReport}>
-        Report
-      </button>
+      <button className='report'>Report</button>
     </>
   )
 }

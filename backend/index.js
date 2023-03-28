@@ -30,7 +30,7 @@ app.post('/signup', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const users = database.collection('users')
 
     const existingUser = await users.findOne({ email })
@@ -67,7 +67,7 @@ app.post('/login', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const users = database.collection('users')
 
     const user = await users.findOne({ email })
@@ -96,7 +96,7 @@ app.get('/user', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const users = database.collection('users')
 
     const query = { user_id: userId }
@@ -111,15 +111,17 @@ app.get('/user', async (req, res) => {
 app.post('/report', async (req, res) => {
   const client = new MongoClient(uri)
   const { problem, reportedUserId } = req.body
-  console.log('req.body is:', req.body)
 
   try {
     await client.connect()
-    const database = client.db('tinder-app')
+    const database = client.db('app-data')
     const users = database.collection('users')
     const reports = database.collection('reports')
+    // console.log('reportedUserId:', typeof reportedUserId)
 
-    const personGetReport = await users.findOne({ reportedUserId })
+    const personGetReport = await users.find({
+      user_id: reportedUserId,
+    })
     if (!personGetReport) {
       return res.status(404).send('Can not find this user account')
     }
@@ -144,7 +146,7 @@ app.get('/reports', async (req, res) => {
   const client = new MongoClient(uri)
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const reports = database.collection('reports')
     const allReports = await reports.find().toArray()
     res.json(allReports)
@@ -162,7 +164,7 @@ app.put('/addmatch', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const users = database.collection('users')
 
     const query = { user_id: userId }
@@ -184,7 +186,7 @@ app.get('/users', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const users = database.collection('users')
 
     const pipeline = [
@@ -212,7 +214,7 @@ app.get('/gendered-users', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const users = database.collection('users')
     const query = { gender_identity: { $eq: gender } }
     const foundUsers = await users.find(query).toArray()
@@ -229,7 +231,7 @@ app.put('/user', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const users = database.collection('users')
 
     const query = { user_id: formData.user_id }
@@ -264,7 +266,7 @@ app.get('/messages', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const messages = database.collection('messages')
 
     const query = {
@@ -285,7 +287,7 @@ app.post('/message', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const messages = database.collection('messages')
 
     const insertedMessage = await messages.insertOne(message)
