@@ -1,25 +1,35 @@
 import ChatHeader from './ChatHeader'
 import MatchesDisplay from './MatchesDisplay'
 import ChatDisplay from './ChatDisplay'
+import Report from './Report'
 import { useState } from 'react'
 
 const ChatContainer = ({ user }) => {
-    const [ clickedUser, setClickedUser ] = useState(null)
+  const [clickedUser, setClickedUser] = useState(null)
 
-    return (
-        <div className="chat-container">
-            <ChatHeader user={user}/>
+  return (
+    <div className='chat-container'>
+      <ChatHeader user={user} />
 
-            <div>
-                <button className="option" onClick={() => setClickedUser(null)}>Matches</button>
-                <button className="option" disabled={!clickedUser}>Chat</button>
-            </div>
+      <div>
+        <button className='option' onClick={() => setClickedUser(null)}>
+          Matches
+        </button>
+        <button className='option' disabled={!clickedUser}>
+          Chat
+        </button>
+      </div>
 
-            {!clickedUser && <MatchesDisplay matches={user.matches} setClickedUser={setClickedUser}/>}
+      {!clickedUser && (
+        <MatchesDisplay
+          matches={user.matches}
+          setClickedUser={setClickedUser}
+        />
+      )}
 
-            {clickedUser && <ChatDisplay user={user} clickedUser={clickedUser}/>}
-        </div>
-    )
+      {clickedUser && <ChatDisplay user={user} clickedUser={clickedUser} />}
+    </div>
+  )
 }
 
 export default ChatContainer
