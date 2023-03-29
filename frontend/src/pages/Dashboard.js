@@ -79,7 +79,7 @@ const Dashboard = () => {
   return (
     <>
       {user?.moderator ? (
-        <>Moderator</>
+        <Moderator />
       ) : (
         user && (
           <div className='dashboard'>

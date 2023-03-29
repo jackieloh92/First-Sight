@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
+import { useCookies } from 'react-cookie'
+
 import axios from 'axios'
 const ReportUser = ({ userId, onClose }) => {
   const [category, setCategory] = useState('')
   const [explanation, setExplanation] = useState('')
   const [evidence, setEvidence] = useState([])
+  const [cookies, setCookie, removeCookie] = useCookies(['user'])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const formData = new FormData()
       formData.append('reportedUserId', userId)
+      formData.append('complainedUserId', cookies.UserId)
       formData.append('category', category)
       formData.append('explanation', explanation)
       evidence.forEach((file) => {
