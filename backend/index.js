@@ -108,8 +108,7 @@ app.get('/user', async (req, res) => {
 // Create report:
 app.post('/report', async (req, res) => {
   const client = new MongoClient(uri)
-  const { problem, reportedUserId } = req.body
-
+  const { userId, category, explanation, evidenceURL } = req.body
   try {
     await client.connect()
     const database = client.db('app-data')
@@ -117,16 +116,22 @@ app.post('/report', async (req, res) => {
     const reports = database.collection('reports')
     // console.log('reportedUserId:', typeof reportedUserId)
 
-    const personGetReport = await users.find({
-      user_id: reportedUserId,
+    const personGetReport = await users.findOne({
+      user_id: userId,
     })
+    console.log(personGetReport)
     if (!personGetReport) {
       return res.status(404).send('Can not find this user account')
     }
 
     const data = {
-      user_id: reportedUserId,
-      problem: problem,
+      reported_user_id: userId,
+      reported_user_url: personGetReport?.url,
+      reported_email: personGetReport?.email,
+      reported_first_name: personGetReport?.email,
+      category: category,
+      explanation: explanation,
+      evidenceURL: evidenceURL,
     }
 
     const insertedReport = await reports.insertOne(data)
