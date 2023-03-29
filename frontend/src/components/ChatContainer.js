@@ -1,7 +1,6 @@
 import ChatHeader from './ChatHeader'
 import MatchesDisplay from './MatchesDisplay'
 import ChatDisplay from './ChatDisplay'
-import Report from './Report'
 import { useState } from 'react'
 
 const ChatContainer = ({ user }) => {
