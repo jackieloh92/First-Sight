@@ -1,10 +1,12 @@
 import Nav from '../components/Nav'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const OnBoarding = () => {
+const Edit = () => {
+
+
     const [cookies, setCookie, removeCookie] = useCookies(null)
     const [formData, setFormData] = useState({
         user_id: cookies.UserId,
@@ -20,6 +22,20 @@ const OnBoarding = () => {
         matches: []
 
     })
+
+    useEffect(() => {
+        async function getUser() {
+            const response = await axios.get(`http://localhost:8000/user?userId=${cookies.UserId}`);
+            setFormData(response.data)
+        }
+        getUser()
+    }, [])
+
+    useEffect(() => {
+        console.log('This is the' + formData)
+        console.log(formData.first_name)
+    }, [formData])
+
 
     let navigate = useNavigate()
 
@@ -48,6 +64,7 @@ const OnBoarding = () => {
         }))
     }
 
+
     return (
         <>
             <Nav
@@ -58,7 +75,7 @@ const OnBoarding = () => {
             />
 
             <div className="onboarding">
-                <h2>CREATE ACCOUNT</h2>
+                <h2>EDIT ACCOUNT</h2>
 
                 <form onSubmit={handleSubmit}>
                     <section>
@@ -67,7 +84,7 @@ const OnBoarding = () => {
                             id="first_name"
                             type='text'
                             name="first_name"
-                            placeholder="First Name"
+                            // placeholder={formData.first_name}
                             required={true}
                             value={formData.first_name}
                             onChange={handleChange}
@@ -79,7 +96,7 @@ const OnBoarding = () => {
                                 id="dob_day"
                                 type="number"
                                 name="dob_day"
-                                placeholder="DD"
+                                // placeholder={formData.dob_day}
                                 required={true}
                                 value={formData.dob_day}
                                 onChange={handleChange}
@@ -89,7 +106,7 @@ const OnBoarding = () => {
                                 id="dob_month"
                                 type="number"
                                 name="dob_month"
-                                placeholder="MM"
+                                // placeholder="MM"
                                 required={true}
                                 value={formData.dob_month}
                                 onChange={handleChange}
@@ -99,7 +116,7 @@ const OnBoarding = () => {
                                 id="dob_year"
                                 type="number"
                                 name="dob_year"
-                                placeholder="YYYY"
+                                // placeholder="YYYY"
                                 required={true}
                                 value={formData.dob_year}
                                 onChange={handleChange}
@@ -186,7 +203,7 @@ const OnBoarding = () => {
                             type="text"
                             name="about"
                             required={true}
-                            placeholder="I like long walks..."
+                            // placeholder="I like long walks..."
                             value={formData.about}
                             onChange={handleChange}
                         />
@@ -216,4 +233,4 @@ const OnBoarding = () => {
         </>
     )
 }
-export default OnBoarding
+export default Edit
