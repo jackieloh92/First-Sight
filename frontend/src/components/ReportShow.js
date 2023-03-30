@@ -1,10 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
-function ReportShow({ data }) {
+function ReportShow({ data, setUpdateData }) {
   const handleApprove = async (event) => {
     event.preventDefault()
-    // console.log('Approve')
 
     try {
       //  delete that report
@@ -17,18 +16,18 @@ function ReportShow({ data }) {
       await axios.delete('http://localhost:8000/user', {
         params: { userId: data?.userGetsReportedId },
       })
+      setUpdateData(new Date())
     } catch (error) {}
   }
   const handleCancel = async (event) => {
     event.preventDefault()
-    // console.log('Cancele')
-    console.log(data?.reportId) // cancel request
     try {
       await axios.delete(`http://localhost:8000/report`, {
         params: {
           reportId: data?.reportId,
         },
       })
+      setUpdateData(new Date())
     } catch (error) {}
   }
   return (

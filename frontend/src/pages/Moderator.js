@@ -5,16 +5,19 @@ import axios from 'axios'
 
 function Moderator() {
   const [reports, setReports] = useState([])
+  const [updateData, setUpdateData] = useState(new Date())
   useEffect(() => {
     async function getReport() {
       const response = await axios.get('http://localhost:8000/reports')
       setReports(response.data)
     }
     getReport()
-  }, [])
+    console.log('update Data from Moderaator Page:', updateData)
+  }, [updateData])
+  useEffect(() => {}, [reports])
   let reportToShow = []
   reportToShow = reports.map((item) => {
-    return <ReportShow data={item} />
+    return <ReportShow data={item} setUpdateData={setUpdateData} />
   })
 
   return (
