@@ -12,12 +12,17 @@ function Moderator() {
       setReports(response.data)
     }
     getReport()
-    console.log('update Data from Moderaator Page:', updateData)
   }, [updateData])
   useEffect(() => {}, [reports])
   let reportToShow = []
   reportToShow = reports.map((item) => {
-    return <ReportShow data={item} setUpdateData={setUpdateData} />
+    return (
+      <ReportShow
+        key={item.reportId}
+        data={item}
+        setUpdateData={setUpdateData}
+      />
+    )
   })
 
   return (

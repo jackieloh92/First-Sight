@@ -313,3 +313,36 @@ nav .logo-container .logo {
   display: flex;
   flex-direction: column;
 }
+
+/*-------- Morderator page --------*/
+.report-card {
+  background-color: rgb(204, 221, 221);
+  padding: 20px;
+  margin: 30px;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 30px;
+  text-align: left;
+}
+.report-card-header {
+  display: flex;
+  gap: 10px;
+}
+
+.report-card-footer {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+.reported-user-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+
+.report-evidence {
+  border-radius: 30px;
+}
+
+.report-evidence {
+  border-radius: 30px;
+}
