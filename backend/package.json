@@ -15,7 +15,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-<<<<<<< HEAD
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.14.0",
     "mongoose": "^7.0.3",
@@ -23,11 +22,4 @@
     "uuid": "^8.3.2"
   },
   "description": ""
-=======
-    "jsonwebtoken": "^9.0.0",
-    "mongodb": "^5.1.0",
-    "nodemon": "^2.0.22",
-    "uuid": "^9.0.0"
-  }
->>>>>>> e3d3e9580c77683d323eb83f33cc9fb11f512534
 }

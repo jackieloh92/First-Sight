@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
@@ -50,10 +49,3 @@ const MatchesDisplay = ({ matches, setClickedUser }) => {
 };
 
 export default MatchesDisplay;
-=======
-const MatchesDisplay = () => {
-  return <div className=""></div>;
-};
-
-export default MatchesDisplay;
->>>>>>> e3d3e9580c77683d323eb83f33cc9fb11f512534
