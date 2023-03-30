@@ -318,7 +318,6 @@ app.get('/reports', async (req, res) => {
 app.delete('/report', async (req, res) => {
   const client = new MongoClient(uri)
   const reportId = req.query.reportId
-  console.log('reportId', reportId)
 
   try {
     await client.connect()
@@ -327,7 +326,6 @@ app.delete('/report', async (req, res) => {
     const query = { reportId: reportId }
     const deleteResult = await reports.deleteOne(query)
     // console.log(deleteResult + 'has been deleted')
-    console.log('Delete Report', deleteResult)
     res.send(deleteResult)
   } finally {
     await client.close()
@@ -347,6 +345,7 @@ app.delete('/user', async (req, res) => {
     const query = { user_id: userId }
     const deleteResult = await users.deleteOne(query)
     // console.log(deleteResult + 'has been deleted')
+    console.log('deleted user')
     res.send(deleteResult)
   } finally {
     await client.close()

@@ -9,7 +9,6 @@ function Moderator() {
     async function getReport() {
       const response = await axios.get('http://localhost:8000/reports')
       setReports(response.data)
-      console.log('report list is:', response.data)
     }
     getReport()
   }, [])
