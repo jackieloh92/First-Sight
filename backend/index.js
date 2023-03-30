@@ -105,72 +105,6 @@ app.get('/user', async (req, res) => {
   }
 })
 
-// Create report:
-app.post('/report', async (req, res) => {
-  const client = new MongoClient(uri)
-  const {
-    complainedUserId,
-    reportedUserId,
-    category,
-    explanation,
-    evidenceURL,
-  } = req.body
-  try {
-    await client.connect()
-    const database = client.db('app-data')
-    const users = database.collection('users')
-    const reports = database.collection('reports')
-    // console.log('reportedUserId:', typeof reportedUserId)
-
-    const personGetReport = await users.findOne({
-      user_id: reportedUserId,
-    })
-    const personComplained = await users.findOne({ user_id: complainedUserId })
-
-    // console.log('personGetReport:', personGetReport)
-    // console.log('personComplained:', personComplained)
-
-    if (!personGetReport || !personComplained) {
-      return res.status(404).send('Can not find this user account')
-    }
-
-    const data = {
-      reported_user_id: reportedUserId,
-      reported_user_url: personGetReport?.url,
-      reported_user_email: personGetReport?.email,
-      reported_user_first_name: personGetReport?.first_name,
-      category: category,
-      explanation: explanation,
-      evidenceURL: evidenceURL,
-      complained_user_email: personComplained?.email,
-    }
-
-    const insertedReport = await reports.insertOne(data)
-
-    res.json(insertedReport)
-  } catch (err) {
-    console.log(err)
-  } finally {
-    await client.close()
-  }
-})
-
-// Get all Reports by reportId in the Database
-app.get('/reports', async (req, res) => {
-  const client = new MongoClient(uri)
-  try {
-    await client.connect()
-    const database = client.db('app-data')
-    const reports = database.collection('reports')
-    const allReports = await reports.find().toArray()
-    res.json(allReports)
-  } catch (err) {
-    console.log(err)
-  } finally {
-    await client.close()
-  }
-})
-
 // Update User with a match
 app.put('/addmatch', async (req, res) => {
   const client = new MongoClient(uri)
@@ -306,6 +240,114 @@ app.post('/message', async (req, res) => {
 
     const insertedMessage = await messages.insertOne(message)
     res.send(insertedMessage)
+  } finally {
+    await client.close()
+  }
+})
+
+/*---Report Route---*/
+// Create report:
+app.post('/report', async (req, res) => {
+  const client = new MongoClient(uri)
+  const {
+    userWantsReportId,
+    userGetsReportedId,
+    category,
+    explanation,
+    evidenceURL,
+  } = req.body
+  try {
+    await client.connect()
+    const database = client.db('app-data')
+    const users = database.collection('users')
+    const reports = database.collection('reports')
+    const generatedReportId = uuidv4()
+    // console.log('userGetsReportedId:', typeof userGetsReportedId)
+
+    const userGetsReported = await users.findOne({
+      user_id: userGetsReportedId,
+    })
+    const userWantsReport = await users.findOne({ user_id: userWantsReportId })
+
+    // console.log('userGetsReported:', userGetsReported)
+    // console.log('personComplained:', personComplained)
+
+    if (!userGetsReported || !userWantsReport) {
+      return res.status(404).send('Can not find this user account')
+    }
+
+    const data = {
+      reportId: generatedReportId,
+      userGetsReportedId: userGetsReportedId,
+      userGetsReported_url: userGetsReported?.url,
+      userGetsReported_email: userGetsReported?.email,
+      userGetsReported_first_name: userGetsReported?.first_name,
+      category: category,
+      explanation: explanation,
+      evidenceURL: evidenceURL,
+      userWantsReport_email: userWantsReport?.email,
+    }
+
+    const insertedReport = await reports.insertOne(data)
+
+    res.json(insertedReport)
+  } catch (err) {
+    console.log(err)
+  } finally {
+    await client.close()
+  }
+})
+
+// Get all Reports by reportId in the Database
+app.get('/reports', async (req, res) => {
+  const client = new MongoClient(uri)
+  try {
+    await client.connect()
+    const database = client.db('app-data')
+    const reports = database.collection('reports')
+    const allReports = await reports.find().toArray()
+    res.json(allReports)
+  } catch (err) {
+    console.log(err)
+  } finally {
+    await client.close()
+  }
+})
+// Delete Report
+
+app.delete('/report', async (req, res) => {
+  const client = new MongoClient(uri)
+  const reportId = req.query.reportId
+  console.log('reportId', reportId)
+
+  try {
+    await client.connect()
+    const database = client.db('app-data')
+    const reports = database.collection('reports')
+    const query = { reportId: reportId }
+    const deleteResult = await reports.deleteOne(query)
+    // console.log(deleteResult + 'has been deleted')
+    console.log('Delete Report', deleteResult)
+    res.send(deleteResult)
+  } finally {
+    await client.close()
+  }
+})
+
+// Deleter User:
+
+app.delete('/user', async (req, res) => {
+  const client = new MongoClient(uri)
+  const userId = req.query.userId
+  try {
+    await client.connect()
+    const database = client.db('app-data')
+    const users = database.collection('users')
+
+    const query = { user_id: userId }
+    const deleteResult = await users.deleteOne(query)
+    // console.log(deleteResult + 'has been deleted')
+    res.send(deleteResult)
   } finally {
     await client.close()
   }
