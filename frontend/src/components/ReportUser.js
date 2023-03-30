@@ -8,25 +8,36 @@ const ReportUser = ({ userId, onClose }) => {
   const [evidence, setEvidence] = useState([])
   const [cookies, setCookie, removeCookie] = useCookies(['user'])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const formData = new FormData()
-      formData.append('reportedUserId', userId)
-      formData.append('complainedUserId', cookies.UserId)
-      formData.append('category', category)
-      formData.append('explanation', explanation)
-      evidence.forEach((file) => {
-        formData.append('evidence', file)
-      })
-      console.log(formData)
-      await axios.post('http://localhost:8000/report', formData)
-      // display a confirmation message
-      // onClose()
-    } catch (error) {
-      console.error(error)
-      // handle error
-    }
+  const handleSubmit = async (event) => {
+    // e.preventDefault()
+    // try {
+    //   const formData = new FormData()
+    //   formData.append('reportedUserId', userId)
+    //   formData.append('complainedUserId', cookies.UserId)
+    //   formData.append('category', category)
+    //   formData.append('explanation', explanation)
+    //   evidence.forEach((file) => {
+    //     formData.append('evidence', file)
+    //   })
+    //   console.log(formData)
+    //   await axios.post('http://localhost:8000/report', formData)
+    //   // display a confirmation message
+    //   // onClose()
+    // } catch (error) {
+    //   console.error(error)
+    //   // handle error
+    // }
+    event.preventDefault()
+    // try{
+    //   const [formData, setFormData] = useState({
+    //       user_id: cookies.UserId, // userGetsReportedId
+    //       first_name: cookies.first_name, // userGetsReportedName
+    //       url: "",
+    //       about: "",
+    //       matches: []
+
+    //   })
+    // }
   }
   return (
     <div>

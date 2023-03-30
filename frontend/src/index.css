@@ -317,10 +317,6 @@ nav .logo-container .logo {
 }
 
 /*-------- Morderator page --------*/
-.moderator {
-  background-color: rgb(255, 255, 255);
-}
-
 .report-card {
   background-color: rgb(204, 221, 221);
   padding: 20px;
@@ -346,6 +342,10 @@ nav .logo-container .logo {
   width: 100px;
   height: 100px;
   border-radius: 100px;
+}
+
+.report-evidence {
+  border-radius: 30px;
 }
 
 .report-evidence {
