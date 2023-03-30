@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -32,5 +33,21 @@ const ChatInput = ({ user, clickedUser, getUserMessages, getClickedUsersMessages
         </div>
     )
 }
+=======
+import { useState } from "react";
+>>>>>>> e3d3e9580c77683d323eb83f33cc9fb11f512534
 
-export default ChatInput
+const ChatInput = () => {
+  const [textArea, setTextArea] = useState(null);
+  return (
+    <div className="chat-input">
+      <textarea
+        value={textArea}
+        onChange={(e) => setTextArea(e.target.value)}
+      />
+      <button className="secondary-button">Submit</button>
+    </div>
+  );
+};
+
+export default ChatInput;
