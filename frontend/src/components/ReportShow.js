@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 function ReportShow({ data, setUpdateData }) {
-  const handleApprove = async (event) => {
+  const handleBan = async (event) => {
     event.preventDefault()
 
     try {
@@ -59,12 +59,8 @@ function ReportShow({ data, setUpdateData }) {
       </div>
 
       <div className='report-card-footer'>
-        <button
-          className='primary-button'
-          type='submit'
-          onClick={handleApprove}
-        >
-          Approve
+        <button className='primary-button' type='submit' onClick={handleBan}>
+          Ban
         </button>
         <button className='primary-button' type='submit' onClick={handleCancel}>
           Cancel
