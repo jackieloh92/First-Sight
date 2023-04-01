@@ -43,13 +43,11 @@
 
 
 ### WireFrames
-<img src="https://imgur.com/aEmtR6T">
+![Image 1](https://imgur.com/aEmtR6T)
 
-<img src="https://imgur.com/wUbPppV">
-
-<img src="https://imgur.com/1aAN0Po">
-
-<img src="https://imgur.com/41mVOQy">
+![Image 2](https://imgur.com/wUbPppV)
+![Image 3](https://imgur.com/1aAN0Po)
+![Image 4](https://imgur.com/41mVOQy)
 
 ### Unsolved Problems/Major Hurdles
 
