@@ -6,7 +6,7 @@ const ReportUser = ({ userId, onClose }) => {
   const [category, setCategory] = useState('');
   const [explanation, setExplanation] = useState('');
   const [evidence, setEvidence] = useState([]);
-  const [cookies] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,7 +18,7 @@ const ReportUser = ({ userId, onClose }) => {
     evidence.forEach((file) => {
       formData.append('evidence', file);
     });
-
+ 
     try {
       await axios.post('http://localhost:8000/report', formData);
       alert('Report submitted successfully.');
