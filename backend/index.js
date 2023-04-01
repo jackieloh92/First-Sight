@@ -26,7 +26,7 @@ app.post('/signup', async (req, res) => {
 
   try {
     await client.connect()
-    const database = client.db('tinder-project')
+    const database = client.db('app-data')
     const users = database.collection('users')
 
     const existingUser = await users.findOne({ email })
