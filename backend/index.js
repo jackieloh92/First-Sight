@@ -353,4 +353,33 @@ app.delete('/user', async (req, res) => {
   }
 })
 
+
+
+/*const upload = multer({ dest: 'uploads/' }) // set the destination folder for uploaded files
+
+router.post('/report', upload.array('evidence', 3), async (req, res) => {
+  const { reportedUserId, complainedUserId, category, explanation } = req.body
+  const files = req.files || [] // get the uploaded files from the request
+
+  // create a new reportUser document with the form data
+  const reportUser = new ReportUser({
+    reportedUserId,
+    complainedUserId,
+    category,
+    explanation,
+    evidence: files.map((file) => file.path), // store the file paths in the reportUser document
+  })
+
+  try {
+    await reportUser.save() // save the new document to the database
+    res.status(201).send('Report submitted successfully!')
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Error submitting report!')
+  }
+})
+
+module.exports = router*/
+
+
 app.listen(PORT, () => console.log('server running on PORT ' + PORT))

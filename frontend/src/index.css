@@ -351,3 +351,75 @@ nav .logo-container .logo {
 .report-evidence {
   border-radius: 30px;
 }
+
+.report-user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.report-user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.report-user-input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.report-user-label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.report-user-select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.report-user-textarea {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
+.report-user-file {
+  margin-top: 10px;
+}
+
+.report-user-submit {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.report-user-submit:hover {
+  background-color: #2E8B57;
+}
+
+.report-user-cancel {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.report-user-cancel:hover {
+  background-color: #b3b3b3;
+}
